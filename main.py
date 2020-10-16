@@ -29,20 +29,18 @@ def encode(s):
 def stringList(str1):
 	return str1.split()
 
-def encodeM(lst, cnt = 0):
-	last_elem = lst[-1]
-	if lst[cnt] == last_elem:
-		return encode(lst[cnt])
-	else:
-		return [encode(lst[cnt])] + [encodeM(lst,cnt+1)]
+def encodeM(lst):
+  if lst == []: 
+    return []
+  else:
+    return[encode(lst[0])] + encodeM(lst[1:])
 
-def decodeM(lst, cnt = 0):
-	last_elem = lst[-1]
-	if lst[cnt] == last_elem:
-		return decode(lst[cnt])
-	else:
-		return [decode(lst[cnt])] + [decodeM(lst,cnt+1)]
-
+def decodeM(lst):
+  if lst == []:
+    return []
+  else:
+    return[decode(lst[0])] + decodeM(lst[1:])
+    
 def main(s):
 	slst=removePun(s)
 	eList = encodeM(stringList(slst))
